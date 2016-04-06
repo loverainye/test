@@ -1,0 +1,110 @@
+* API 接口文档管理
+** 什么是接口文档
+: 为了给不同系统数据流转调用，提供一种契约。例如前后端系统调用。
+** 为什么需要接口文档
+: 减少沟通成本。
+: 方便其他人员参与。
+: 文档历史记录，方便查阅。
+** 怎么生成接口文档
+*** 手写
+: 定义一种模板规范，由各模块开发人员添充，例如 doc，txt，markdown 等格式。
+*** 手写文档的问题
+: 开发人员更新代码后，要再次更新文档，存在漏写、误写、忘写,甚至不写的问题。
+*** 注释代码自动生成
+: 写在程序的注释代码中，用各自语言的文档生成工具生成文档。解决了手写文档与代码同步的问题。
+*** 注释代码自动生成的问题
+: 各个语言注释风格与生成方式各不相同，生成格式样式繁多，增加沟通成本。
+: 多个系统文档分散，分格不统一，增加管理成本。
+** 接口文档管理
+*** 什么是接口文档管理
+**** 提供契约，可以根据文档生成编码，也可以根据编码生成文档。
+**** 统一文档样式，统一文档入口，同步代码自动生成。
+**** 文档分组,按服务、系统分组。
+**** 版本管理，可以查阅不同版本。
+**** 显示每个 api 的修改人、更新时间、接口更新状态
+**** 自动整理 api 的历史修改记录
+**** 设计沟通、使用协调、变更检测及通知
+**** 文档可执行能力，文档本身可以测试执行，例如各大公众平台的开放 API。
+*** 接口文档管理方式
+: 自己造轮子,根据需求编写代码.
+: 现有工具，参考常用 API 文档管理与设计工具，有的工具策重于设计，有的工具策重于生成。
+
+** 选择 Swagger 作接口文档管理
+*** Swagger 可以作什么
+: 提供契约，可以根据文档生成编码，也可以根据编码生成文档。
+: 统一文档样式，统一文档入口，同步代码自动生成。
+: 文档分组,按服务、系统分组(在 UI 上需要自己更改)。
+: 版本管理，可以查阅不同版本。（需要修改）
+: 显示每个 api 的修改人、更新时间、接口更新状态（暂不支持）
+: 自动整理 api 的历史修改记录(暂不支持)
+: 设计沟通 使用协调
+: 文档可执行能力，文档本身可以测试执行，例如各大公众平台的开放 API。
+*** Swagger 子项目介绍
+: Swagger Core 核心项目包据文档注解等规范。
+: Swagger UI 提供 html 文档展示与执行入口。
+: Swagger Editor 提供 API 设计器可以导入与导出文档.
+: Swagger-Maven-Plugin 编译时自动生成静态文档与 JSON 格式文档
+: Springfox 提供集成 Spring 支持
+: Swagger-springmvc springfox 前身支持 spring mvc 3 系列版本
+*** Swagger 集成介绍
+: 主要使用 Swagger Core Swagger-Maven-Plugin Swagger-springmvc Swagger UI
+*** Swagger 文档注解介绍
+: 对类注解 @Api(value = "userapi",description = "this is desc",basePath = "/useCtrl",position = 0)
+: 对方法注解 @ApiOperation(value = "添加用户", response = UserInfo.class, notes = "备注信息 add user",tags = "tag1", httpMethod = "POST")
+: 对请求参数注解 @ApiParam(required = true, name = "id", value = "用户 id")
+: response 属性注解返回类型，allowableValues 可允许值以逗号分隔 example allowableValues = "zhang,yu,tong"
+: basePath，tag，position 属性暂时未观察到具体作用
+: 以上只是生成文档的注解，并不对业务逻辑作真实判断。
+: swagger 注解文档: https://github.com/swagger-api/swagger-core/wiki/Annotations
+*** Swagger 实例
+: git@192.168.0.8:back-end/apidoc-demo.git
+: 查看 com.joinwe.apidoc.controller.UserController 控制器示例
+: 以下 Tomcat 运行示例
+
+#+CAPTION: Swagger-UI 示例
+ #+LABEL: img:swagger-01
+[[file:img/swagger-ui.png]]
+#+CAPTION: Swagger-UI 示例
+ #+LABEL: img:swagger-02
+[[./swaggerui2.png]]
+*** Swagger 未解决的问题
+: 统一文档样式，统一文档入口，同步代码自动生成。
+: 文档分组,按服务、系统分组。
+: 版本管理，可以查阅不同版本。
+: 显示每个 api 的修改人、更新时间、接口更新状态。
+: 自动整理 api 的历史修改记录。
+
+
+** 参考资料
+https://restful.io/a-review-of-all-most-common-api-editors-6a720dc4f4e6
+
+http://apievangelist.com/2014/03/08/hello-world-product-api-with-blueprint-raml-and-swagger/
+
+http://www.slideshare.net/TomJohnson7/publishing-strategies-for-api-documentation
+
+https://lonelyplanet.atlassian.net/wiki/display/PUB/API+Specification%2C+Automated+Testing%2C+and+Documentation+Generation+Discussion
+
+http://apievangelist.com/2014/03/08/hello-world-product-api-with-blueprint-raml-and-swagger/
+
+
+
+** 常用 API 文档管理与设计工具
+http://swagger.io/
+
+http://apidocjs.com/
+
+https://www.mashery.com/
+
+https://speca.io/
+
+http://pragmatiqa.com/xodata/
+
+http://studio.restlet.com/
+
+https://github.com/mashery/iodocs
+
+http://restlet.com/products/apispark/
+
+
+** Open API
+https://openapis.org/
