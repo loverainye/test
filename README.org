@@ -63,7 +63,7 @@
 
 #+CAPTION: Swagger-UI 示例
  #+LABEL: img:swagger-01
-[[file:img/swagger-ui.png]]
+[[swagger-ui.png]]
 #+CAPTION: Swagger-UI 示例
  #+LABEL: img:swagger-02
 [[./swaggerui2.png]]
